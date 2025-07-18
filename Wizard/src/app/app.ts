@@ -4,7 +4,7 @@ import { Charsel } from "./charsel/charsel";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Charsel],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
