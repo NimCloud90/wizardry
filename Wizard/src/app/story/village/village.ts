@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-dungeon',
+  selector: 'app-village',
   imports: [RouterModule],
-  templateUrl: './dungeon.html',
-  styleUrl: './dungeon.css'
+  templateUrl: './village.html',
+  styleUrl: './village.css'
 })
-export class Dungeon {
+export class Village {
 
 }

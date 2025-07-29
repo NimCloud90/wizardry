@@ -1,0 +1,54 @@
+<mat-form-field id="name">
+    <mat-label>Name</mat-label>
+    <input matInput>
+</mat-form-field>
+
+<mat-form-field id="role">
+    <mat-label>Role</mat-label>
+    <input matInput>
+</mat-form-field>
+
+<mat-form-field id="perstat">
+    <mat-label>Select Perseption Stat Value</mat-label>
+    <mat-select>
+    @for (pers of pers; track pers) {
+    <mat-option [value]="pers.value">{{pers.viewValue}}</mat-option>
+    }
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field id="agistat">
+    <mat-label>Select Agility Stat Value</mat-label>
+    <mat-select>
+    @for (agi of agi; track agi) {
+    <mat-option [value]="pers.values">{{pers[0].viewValue}}</mat-option>
+    }
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field id="strstat">
+    <mat-label>Select Strength Stat Value</mat-label>
+    <mat-select>
+    @for (str of str; track str) {
+    <mat-option [value]="str.value">{{str.viewValue}}</mat-option>
+    }
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field id="intstat">
+    <mat-label>Select Intelligence Stat Value</mat-label>
+    <mat-select>
+    @for (pers of ints; track ints) {
+    <mat-option [value]="ints.values">{{ints[0].viewValue}}</mat-option>
+    }
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field id="chastat">
+    <mat-label>Select Intelligence Stat Value</mat-label>
+    <mat-select>
+    @for (pers of chas; track chas) {
+    <mat-option [value]="chas.values">{{chas[0].viewValue}}</mat-option>
+    }
+    </mat-select>
+</mat-form-field>
