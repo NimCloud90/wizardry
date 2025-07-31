@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import { RouterModule } from '@angular/router';
+import {filter, single} from 'rxjs';
+import { Api } from '../../services/api';
+import { CommonModule } from '@angular/common';
+
 
 interface Pers {
   value: string;
@@ -32,13 +36,30 @@ interface Chas {
 
 @Component({
   selector: 'app-charsel',
-  imports: [MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule, RouterModule],
+  imports: [MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule, RouterModule, ReactiveFormsModule, CommonModule],
   templateUrl: './charsel.html',
   styleUrl: './charsel.css'
 })
 
-
 export class Charsel {
+
+  charName:string = '';
+  role:string = '';
+  form: FormGroup;
+
+  constructor(private api: Api, private fb: FormBuilder) {
+    this.api.getCharsel;
+    this.form = this.fb.group({
+    name: ['', Validators.required],
+    role: ['', Validators.required],
+    perstat: ['', Validators.required],
+    agstat: ['', Validators.required],
+    strstat: ['', Validators.required],
+    intstat: ['', Validators.required],
+    chastat: ['', Validators.required]
+  })
+  }
+  
 pers: Pers[] = [
   {value: '1-0', viewValue: '1'},
   {value: '2-1', viewValue: '2'},
