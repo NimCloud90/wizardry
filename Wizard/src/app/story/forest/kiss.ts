@@ -1,13 +1,16 @@
 import { Component } from "@angular/core";
-import { RouterModule } from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-kiss',
-    imports: [RouterModule],
+    imports: [],
     templateUrl: './kiss.html',
     styleUrls: ['./kiss.css']
 })
 
 export class Kiss {
-    
+    constructor(private router: Router) {}
+    gotoDungeon() {
+        this.router.navigate(['dungeon']);
+    }
 }

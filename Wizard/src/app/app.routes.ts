@@ -16,6 +16,8 @@ import { Kiss } from './story/forest/kiss';
 import { Run } from './story/forest/run';
 import { Forest2 } from './story/forest/forest-2';
 import { UnionBoy } from './story/forest/union-boy';
+import { GetEm } from './story/forest/get-em';
+import { Talk } from './story/forest/talk';
 
 export const routes: Routes = [
 
@@ -45,6 +47,10 @@ export const routes: Routes = [
             {path: 'forest-2', component: Forest2},
 
             {path: 'union-boy', component: UnionBoy},
+
+            {path: 'get-em', component: GetEm},
+
+            {path: 'talk', component: Talk},
 
             {path: 'dungeon', component: Dungeon},
             

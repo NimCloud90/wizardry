@@ -9,4 +9,15 @@ import { Router } from "@angular/router";
 })
 export class UnionBoy {
     constructor(private router: Router) {}
+    gotoForest() {
+        this.router.navigate(['forest']);
+    }
+
+    gotoGetEm() {
+        this.router.navigate(['get-em']);
+    }
+
+    gotoTalk() {
+        this.router.navigate(['talk']);
+    }
 }
