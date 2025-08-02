@@ -6,7 +6,7 @@ import { signal, Signal } from '@angular/core';
 })
 export class GameStateService {
   // Signal to track the current location in the game
-  currentLocation = signal<string>('village');
+  currentLocation = signal<string>('');
 
   // Signal to track the player's inventory
   inventory = signal<string[]>([]);
