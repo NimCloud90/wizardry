@@ -1,22 +1,17 @@
 import { Component } from '@angular/core';
-import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
-import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { GameStateService } from '../../services/game-state.service';
 import { NgModel } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-
-
 @Component({
-  selector: 'app-forest',
-  imports: [CommonModule, FormsModule, RouterModule],
-  templateUrl: './forest.html',
-  styleUrl: './forest.css'
+  selector: 'app-village',
+  templateUrl: './village.html',
+  imports: [CommonModule, FormsModule],
+  styleUrls: ['./village.css']
 })
-export class Forest {
-
+export class Village {
   selectedChoice: string | undefined;
   selectedView: string | undefined;
 
@@ -31,5 +26,4 @@ export class Forest {
   get currentLocation() {
     return this.gameState.currentLocation();
   }
-
 }
