@@ -1,1 +1,24 @@
-<p>village works!</p>
+<h1>Welcome to the Village</h1>
+<p>You are tasked with going to the dungeon to stop the Evil Dungeon Master who keeps sending their henchmen to attack the village, you should hear the screams of the townsfolk, it is very sad. A Knight as waiting by the entrance to the forest to test you and make sure you are ready for the journey ahead.</p> 
+
+<p>Take your pick, where do you want to go:</p>
+
+<form (ngSubmit)="makeChoice(selectedChoice ?? '')">
+    <label>
+        <input type="radio" name="choice" value="forest" [(ngModel)]="selectedChoice" required />
+        Go to the Forest
+    </label>
+    <br />
+    <label>
+        <input type="radio" name="choice" value="village-2" [(ngModel)]="selectedChoice" required />
+        Enter the Village
+    </label>
+        <input type="radio" name="choice" value="dungeon-2" [(ngModel)]="selectedChoice" required />
+        Visit the Dungeon
+    <br />
+    <button type="submit">Confirm</button>
+</form>
+
+
+<p>Current Location: {{ currentLocation }}</p>
+

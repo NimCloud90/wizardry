@@ -6,32 +6,29 @@ import { Village } from './story/village/village';
 import { Forest } from './story/forest/forest';
 import { Dungeon } from './story/dungeon/dungeon';
 import { CreateAccount } from './player/charsel/player-auth/create-account/create-account';
+import { Dungeon2 } from './story/dungeon/dungeon-2';
+import { Village2 } from './story/village/village-2';
+import path from 'path';
 
 export const routes: Routes = [
 
-    {
-        path: '',
-        component: TitlePage,
-        children: [
+    
+            {path: '', component: TitlePage,},
 
-            {path: '', component: PlayerAuth},
+            {path: 'player-auth', component: PlayerAuth},
 
-            {path: 'create-account',
-                loadComponent: () =>
-                    import('./player/charsel/player-auth/create-account/create-account').then(
-                        (m) => m.CreateAccount
-                ),
-            },
-
+            {path: 'create-account', component: CreateAccount},
 
             {path: 'charsel', component: Charsel},
 
             {path: 'village', component: Village},
 
+            {path: 'village-2', component: Village2},
+
             {path: 'forest', component: Forest},
 
-            {path: 'dungeon', component: Dungeon}
+            {path: 'dungeon', component: Dungeon},
             
-        ]
-    }
+            {path: 'dungeon-2', component: Dungeon2},
+    
 ];

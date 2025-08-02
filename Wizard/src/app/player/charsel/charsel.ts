@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field'
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import {filter, single} from 'rxjs';
 import { Api } from '../../services/api';
 import { CommonModule } from '@angular/common';
@@ -36,7 +36,7 @@ interface Chas {
 
 @Component({
   selector: 'app-charsel',
-  imports: [MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule, RouterModule, ReactiveFormsModule, CommonModule],
+  imports: [MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './charsel.html',
   styleUrl: './charsel.css'
 })
@@ -46,9 +46,11 @@ export class Charsel {
   charName:string = '';
   role:string = '';
   form: FormGroup;
+  readonly charsel: Signal<Charsel[]>
+  
+  constructor(private api: Api, private fb: FormBuilder, private router: Router) {
 
-  constructor(private api: Api, private fb: FormBuilder) {
-    this.api.getCharsel;
+    this.charsel = this.api.getCharsel;
     this.form = this.fb.group({
     name: ['', Validators.required],
     role: ['', Validators.required],
@@ -56,10 +58,14 @@ export class Charsel {
     agstat: ['', Validators.required],
     strstat: ['', Validators.required],
     intstat: ['', Validators.required],
-    chastat: ['', Validators.required]
+    chastat: ['', Validators.required],
   })
   }
-  
+
+
+  gotoVillage() {
+    this.router.navigate(['village'])};
+
 pers: Pers[] = [
   {value: '1-0', viewValue: '1'},
   {value: '2-1', viewValue: '2'},

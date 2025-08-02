@@ -1,12 +1,29 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { GameStateService } from '../../services/game-state.service';
+import { NgModel } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-village',
-  imports: [RouterModule],
   templateUrl: './village.html',
-  styleUrl: './village.css'
+  imports: [CommonModule, FormsModule],
+  styleUrls: ['./village.css']
 })
 export class Village {
+  selectedChoice: string | undefined;
+  selectedView: string | undefined;
 
+  constructor(private gameState: GameStateService, private router: Router) {}
+
+  // Method to handle user choice and navigate to the next location
+  makeChoice(choice: string) {
+    this.router.navigate([`/${choice}`]);
+  }
+
+  // Getter to access the current location
+  get currentLocation() {
+    return this.gameState.currentLocation();
+  }
 }
