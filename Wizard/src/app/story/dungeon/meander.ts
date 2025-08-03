@@ -1,0 +1,17 @@
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+
+
+@Component({
+    selector: 'app-meander',
+    templateUrl: './meander.html',
+    styleUrls: ['./meander.css'],
+    imports: []
+})
+
+export class Meander {
+    constructor(private router: Router) {}
+    gotoDungeon() {
+        this.router.navigate(['/dungeon']);
+    }
+}

@@ -18,6 +18,12 @@ import { Forest2 } from './story/forest/forest-2';
 import { UnionBoy } from './story/forest/union-boy';
 import { GetEm } from './story/forest/get-em';
 import { Talk } from './story/forest/talk';
+import { Left } from './story/dungeon/left';
+import { Meander } from './story/dungeon/meander';
+import { ThroneRoom } from './story/throne-room/throne-room';
+import { SnailLove } from './story/dungeon/snail-love';
+import { SnailFight } from './story/dungeon/snail-fight';
+import { Surrender } from './story/dungeon/surrender';
 
 export const routes: Routes = [
 
@@ -55,5 +61,17 @@ export const routes: Routes = [
             {path: 'dungeon', component: Dungeon},
             
             {path: 'dungeon-2', component: Dungeon2},
+
+            {path: 'left', component: Left},
+
+            {path: 'meander', component: Meander},
+
+            {path: 'snail-love', component: SnailLove},
+
+            {path: 'snail-fight', component: SnailFight},
+            
+            {path: 'surrender', component: Surrender},
+
+            {path: 'throne-room', component: ThroneRoom}
     
 ];
