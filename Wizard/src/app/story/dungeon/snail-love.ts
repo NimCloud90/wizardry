@@ -9,4 +9,7 @@ import { Router } from "@angular/router";
 })
 export class SnailLove {
     constructor(private router: Router) {}
+    gotoThroneRoom() {
+        this.router.navigate(['/throne-room']);
+    }
 }

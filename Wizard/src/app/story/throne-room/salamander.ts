@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import { GameStateService } from '../../services/game-state.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-throne-room',
-  imports: [CommonModule, FormsModule],
-  templateUrl: './throne-room.html',
-  styleUrl: './throne-room.css'
+    selector: 'app-salamander',
+    templateUrl: './salamander.html',
+    styleUrls: ['./salamander.css'],
+    imports: [CommonModule, FormsModule]
 })
-export class ThroneRoom {
+
+export class Salamander {
   selectedChoice: string | undefined;
   selectedView: string | undefined;
 

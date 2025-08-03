@@ -24,6 +24,15 @@ import { ThroneRoom } from './story/throne-room/throne-room';
 import { SnailLove } from './story/dungeon/snail-love';
 import { SnailFight } from './story/dungeon/snail-fight';
 import { Surrender } from './story/dungeon/surrender';
+import { GoodEnd } from './story/throne-room/good-end';
+import { BadEnd } from './story/throne-room/bad-end';
+import { Salamander } from './story/throne-room/salamander';
+import { Fire } from './story/throne-room/fire';
+import { Flee } from './story/throne-room/flee';
+import { Befriend } from './story/throne-room/befriend';
+import { Combat } from './story/throne-room/combat';
+import { Cow } from './story/throne-room/cow';
+import { Death } from './story/throne-room/death';
 
 export const routes: Routes = [
 
@@ -72,6 +81,24 @@ export const routes: Routes = [
             
             {path: 'surrender', component: Surrender},
 
-            {path: 'throne-room', component: ThroneRoom}
+            {path: 'throne-room', component: ThroneRoom},
+
+            {path: 'good-end', component: GoodEnd},
+
+            {path: 'bad-end', component: BadEnd},
+
+            {path: 'salamander', component: Salamander},
+
+            {path: 'fire', component: Fire},
+
+            {path: 'flee', component: Flee},
+
+            {path: 'befriend', component: Befriend},
+
+            {path: 'combat', component: Combat},
+
+            {path: 'cow', component: Cow},
+
+            {path: 'death', component: Death}
     
 ];

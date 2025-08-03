@@ -1,1 +1,26 @@
-<p>throne-room works!</p>
+<h2>You finally made it to the throne room.</h2>
+<img src="assets/sprites/throne.png" width="46%" height="auto" />
+<p>If you're surprised by the elegancy you shouldn't be, evil knows how to make a good hiding spot.</p>
+<p>Here it is, the moment you've been waiting for: how do you proceed?</p>
+<form (ngSubmit)="makeChoice(selectedChoice ?? '')">
+    <label>
+        <input type="radio" name="choice" value="fire" [(ngModel)]="selectedChoice" required />
+        Fight.
+    </label>
+    <br />
+    <label>
+        <input type="radio" name="choice" value="good-end" [(ngModel)]="selectedChoice" required />
+        Befriend.
+    </label>
+    <br />
+    <label>
+        <input type="radio" name="choice" value="bad-end" [(ngModel)]="selectedChoice" required />
+        Flee.
+    </label>
+    <br />
+    <label>
+        <input type="radio" name="choice" value="cow" [(ngModel)]="selectedChoice" required />
+        Cow?
+    </label>
+    <br>
+    <button type="submit">Confirm</button>

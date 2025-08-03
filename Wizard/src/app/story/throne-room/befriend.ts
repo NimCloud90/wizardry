@@ -2,12 +2,12 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 
 @Component({
-    selector: "app-snail-fight",
-    templateUrl: "./snail-fight.html",
-    styleUrls: ["./snail-fight.css"],
+    selector: 'app-befriend',
+    templateUrl: './befriend.html',
+    styleUrls: ['./befriend.css'],
     imports: []
 })
-export class SnailFight {
+export class Befriend {
     constructor(private router: Router) {}
     gotoThroneRoom() {
         this.router.navigate(['/throne-room']);
