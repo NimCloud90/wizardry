@@ -4,7 +4,7 @@
 
 <form (ngSubmit)="makeChoice(selectedChoice ?? '')">
     <label>
-        <input type="radio" name="choice" value="throne-room" [(ngModel)]="selectedChoice" required />
+        <input type="radio" name="choice" value="salamander" [(ngModel)]="selectedChoice" required />
         Follow the path straight to the throne room.
     </label>
     <br />
@@ -17,4 +17,9 @@
         <input type="radio" name="choice" value="meander" [(ngModel)]="selectedChoice" required />
         Meandering around the Forest turned out alright for you, why not try it again here?
     <br />
+    <label>
+        <input type="radio" name="choice" value="union" [(ngModel)]="selectedChoice" required />
+        Wait, what's that noise?
+    </label>
+    <br>
     <button type="submit">Confirm</button>

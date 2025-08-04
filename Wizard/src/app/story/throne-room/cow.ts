@@ -2,14 +2,14 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 
 @Component({
-    selector: "app-fire",
-    templateUrl: "./fire.html",
-    styleUrls: ["./fire.css"],
+    selector: 'app-cow',
+    templateUrl: './cow.html',
+    styleUrls: ['./cow.css'],
     imports: []
 })
-export class Fire {
+export class Cow {
     constructor(private router: Router) {}
-    gotoDoor() {
-        this.router.navigate(["/door"]);
+    gotoDeath() {
+        this.router.navigate(['/death']);
     }
 }
