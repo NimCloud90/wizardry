@@ -9,4 +9,7 @@ import {Router} from '@angular/router';
 })
 export class BadEnd {
     constructor(private router: Router) {}
+    gotoTraped() {
+        this.router.navigate(['/trapped']);
+    }
 }

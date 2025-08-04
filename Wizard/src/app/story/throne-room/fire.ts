@@ -9,4 +9,7 @@ import { Router } from "@angular/router";
 })
 export class Fire {
     constructor(private router: Router) {}
+    gotoDoor() {
+        this.router.navigate(["/door"]);
+    }
 }

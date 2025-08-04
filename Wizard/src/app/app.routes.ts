@@ -33,6 +33,9 @@ import { Befriend } from './story/throne-room/befriend';
 import { Combat } from './story/throne-room/combat';
 import { Cow } from './story/throne-room/cow';
 import { Death } from './story/throne-room/death';
+import { Door } from './story/throne-room/door';
+import { Trapped } from './story/throne-room/trapped';
+import { Converse } from './story/throne-room/converse';
 
 export const routes: Routes = [
 
@@ -99,6 +102,12 @@ export const routes: Routes = [
 
             {path: 'cow', component: Cow},
 
-            {path: 'death', component: Death}
+            {path: 'death', component: Death},
+
+            {path: 'door', component: Door},
+
+            {path: 'trapped', component: Trapped},
+
+            {path: 'converse', component: Converse}
     
 ];

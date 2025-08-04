@@ -9,4 +9,7 @@ import { Router } from "@angular/router";
 })
 export class GoodEnd {
     constructor(private router: Router) {}
+    gotoConverse() {
+        this.router.navigate(["/converse"]);
+    }
 }
