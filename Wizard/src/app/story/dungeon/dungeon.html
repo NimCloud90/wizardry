@@ -5,21 +5,22 @@
 <form (ngSubmit)="makeChoice(selectedChoice ?? '')">
     <label>
         <input type="radio" name="choice" value="salamander" [(ngModel)]="selectedChoice" required />
-        Follow the path straight to the throne room.
+        Follow the Path Straight to the Throne Room.
     </label>
     <br />
     <label>
         <input type="radio" name="choice" value="left" [(ngModel)]="selectedChoice" required />
-        Follow the path down but take the left turn before the throne room.
+        Follow the Path Down but Take the Left Turn Before The Throne Room.
     </label>
     <br />
     <label>
         <input type="radio" name="choice" value="meander" [(ngModel)]="selectedChoice" required />
-        Meandering around the Forest turned out alright for you, why not try it again here?
+        Meandering Around the Forest Turned Out Alright For You, Why Not Try It Again Here?
     <br />
     <label>
+        <br>
         <input type="radio" name="choice" value="union" [(ngModel)]="selectedChoice" required />
-        Wait, what's that noise?
+        Wait, What's That Noise?
     </label>
     <br>
     <button type="submit">Confirm</button>

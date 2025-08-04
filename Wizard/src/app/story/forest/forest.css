@@ -33,7 +33,7 @@ body {
     margin-bottom: 20px; /* Add spacing between radio options */
     cursor: pointer;
     color: #4b0082; /* Indigo for a magical touch */
-    text-shadow: 1px 1px 2px #ff69b4; /* Pink glow */
+    text-shadow: 1px 1px 2px #00ccff; /* Pink glow */
   }
   
   input[type="radio"] {
