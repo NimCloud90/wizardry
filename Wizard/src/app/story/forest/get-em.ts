@@ -17,4 +17,8 @@ export class GetEm {
     gotoForest() {
         this.router.navigate(['forest']);
     }
+
+    gotoUnionTwo() {
+        this.router.navigate(['union-2']);
+}
 }

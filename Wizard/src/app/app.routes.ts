@@ -36,6 +36,10 @@ import { Death } from './story/throne-room/death';
 import { Door } from './story/throne-room/door';
 import { Trapped } from './story/throne-room/trapped';
 import { Converse } from './story/throne-room/converse';
+import { Union } from './story/forest/union';
+import { UnionTwo } from './story/forest/union-2';
+import { Maim } from './story/forest/maim';
+
 
 export const routes: Routes = [
 
@@ -108,6 +112,11 @@ export const routes: Routes = [
 
             {path: 'trapped', component: Trapped},
 
-            {path: 'converse', component: Converse}
-    
+            {path: 'converse', component: Converse},
+
+            {path: 'union', component: Union},
+
+            {path: 'union-2', component: UnionTwo},
+
+            {path: 'maim', component: Maim}
 ];
