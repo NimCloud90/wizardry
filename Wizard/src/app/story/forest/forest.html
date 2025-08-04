@@ -1,30 +1,25 @@
-<img src="/assets/sprites/knight.png">
+<h2>You Go With The Knight</h2>
 <p>The Knight leads you deeper within the Forest, keeping you far enough away from the critters that roam the landscape. Now you are entirely alone with the armored warrior, what shall your next move be?</p>
-
+<img src="/assets/sprites/knight.png" class="center-image">
 <form (ngSubmit)="makeChoice(selectedChoice ?? '')">
     <label>
         <input type="radio" name="choice" value="fight" [(ngModel)]="selectedChoice" required />
         Fight the Knight
     </label>
-    <br />
     <label>
         <input type="radio" name="choice" value="fight-with-words" [(ngModel)]="selectedChoice" required />
         Argue the morality of fighting
     </label>
-    <br />
     <label>
         <input type="radio" name="choice" value="kiss" [(ngModel)]="selectedChoice" required />
         Kiss disctraction
-    <br />
     <label>
+        <br>
         <input type="radio" name="choice" value="run" [(ngModel)]="selectedChoice" required />
         Run and hide
     </label>
-    <br />
     <label>
         <input type="radio" name="choice" value="forest-2" [(ngModel)]="selectedChoice" required />
         Remember you have free will and explore more of the Forest.
     </label>
-    <br />
-    
     <button type="submit">Confirm</button>
