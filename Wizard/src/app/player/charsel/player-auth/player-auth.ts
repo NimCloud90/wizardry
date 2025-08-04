@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
 })
 export class PlayerAuth {
   constructor(private router: Router) {}
-  gotoCharsel() {
-this.router.navigate(['charsel']);
+  gotoLogin() {
+this.router.navigate(['login']);
 }
 
 gotoCreateAccount() {

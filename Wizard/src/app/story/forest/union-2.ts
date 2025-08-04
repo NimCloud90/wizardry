@@ -14,7 +14,7 @@ export class UnionTwo {
     }
 
     gotoMaim() {
-        this.router.navigate(['get-em']);
+        this.router.navigate(['maim']);
     }
 
     gotoTalk() {

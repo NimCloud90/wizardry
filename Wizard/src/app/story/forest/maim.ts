@@ -10,7 +10,10 @@ import { Router } from "@angular/router";
 
 export class Maim {
     constructor(private router: Router) {}
-    gotoUnion(){
-        this.router.navigate(['union']);
+    gotoDungeon(){
+        this.router.navigate(['dungeon']);
+    }
+    gotoForest(){
+        this.router.navigate(['forest']);
     }
 }

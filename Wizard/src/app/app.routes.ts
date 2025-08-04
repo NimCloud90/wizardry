@@ -39,6 +39,7 @@ import { Converse } from './story/throne-room/converse';
 import { Union } from './story/forest/union';
 import { UnionTwo } from './story/forest/union-2';
 import { Maim } from './story/forest/maim';
+import { Login } from './player/login';
 
 
 export const routes: Routes = [
@@ -118,5 +119,7 @@ export const routes: Routes = [
 
             {path: 'union-2', component: UnionTwo},
 
-            {path: 'maim', component: Maim}
+            {path: 'maim', component: Maim},
+
+            {path: 'login', component: Login}
 ];
