@@ -60,6 +60,8 @@ export class Charsel {
     intstat: ['', Validators.required],
     chastat: ['', Validators.required],
   })
+
+  this.apiService.updateSignal.set(true)
   }
 
 
