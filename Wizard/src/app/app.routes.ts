@@ -8,8 +8,6 @@ import { Dungeon } from './story/dungeon/dungeon';
 import { CreateAccount } from './player/charsel/player-auth/create-account/create-account';
 import { Dungeon2 } from './story/dungeon/dungeon-2';
 import { Village2 } from './story/village/village-2';
-import path from 'path';
-import { Component } from '@angular/core';
 import { Fight } from './story/forest/fight';
 import { FightWithWords } from './story/forest/fight-with-words';
 import { Kiss } from './story/forest/kiss';
