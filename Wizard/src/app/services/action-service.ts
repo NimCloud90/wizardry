@@ -1,9 +1,8 @@
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ActionService {
 
-    Charname :WritableSignal<[]> = signal([]);
 }
