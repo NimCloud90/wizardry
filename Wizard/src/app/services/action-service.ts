@@ -5,5 +5,5 @@ import { Injectable, signal, WritableSignal } from '@angular/core';
 })
 export class ActionService {
 
-    Charname :WritableSignal<[]> = signal([]);
+
 }
