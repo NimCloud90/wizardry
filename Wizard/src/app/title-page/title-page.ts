@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class TitlePage {
   constructor(private router: Router) {}
-gotoPlayerAuth() {
-this.router.navigate(['player-auth']);
+gotoVillage() {
+this.router.navigate(['village']);
 }
 }

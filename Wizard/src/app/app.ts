@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Charsel } from "./player/charsel/charsel";
+import { Character } from './player/character/character';
 
 @Component({
   selector: 'app-root',

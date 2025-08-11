@@ -1,56 +1,53 @@
-import { Component, Signal } from '@angular/core';
+import { Component} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import { Router } from '@angular/router';
-import {filter, single} from 'rxjs';
-import { Api } from '../../services/api';
 import { CommonModule } from '@angular/common';
 
 
-interface Pers {
+interface Perstat {
   value: string;
   viewValue: string;
 }
 
-interface Agi {
+interface Agstat {
   values: string;
   viewValue: string;
 }
 
-interface Str {
+interface Strstat {
   value: string;
   viewValue: string;
 }
 
-interface Ints {
+interface Intstat {
   values: string;
   viewValue: string;
 }
 
-interface Chas {
+interface Chastat {
   values: string;
   viewValue: string;
 }
 
 @Component({
-  selector: 'app-charsel',
+  selector: 'app-character',
   imports: [MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule, ReactiveFormsModule, CommonModule],
-  templateUrl: './charsel.html',
-  styleUrl: './charsel.css'
+  templateUrl: './character.html',
+  styleUrl: './character.css'
 })
 
-export class Charsel {
+export class Character {
 
   charName:string = '';
   role:string = '';
   form: FormGroup;
-  readonly charsel: Signal<Charsel[]>
   
-  constructor(private api: Api, private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router) {
 
-    this.charsel = this.api.getCharsel;
+
     this.form = this.fb.group({
     name: ['', Validators.required],
     role: ['', Validators.required],
@@ -61,14 +58,13 @@ export class Charsel {
     chastat: ['', Validators.required],
   })
 
-  this.apiService.updateSignal.set(true)
   }
 
 
   gotoVillage() {
     this.router.navigate(['village'])};
 
-pers: Pers[] = [
+pers: Perstat[] = [
   {value: '1-0', viewValue: '1'},
   {value: '2-1', viewValue: '2'},
   {value: '3-2', viewValue: '3'},
@@ -76,7 +72,7 @@ pers: Pers[] = [
   {value: '5-4', viewValue: '5'}
 ];
 
-agi: Agi[] = [
+agi: Agstat[] = [
   {values: '1-0', viewValue: '1'},
   {values: '2-1', viewValue: '2'},
   {values: '3-2', viewValue: '3'},
@@ -84,7 +80,7 @@ agi: Agi[] = [
   {values: '5-4', viewValue: '5'}
 ];
 
-str: Str[] = [
+str: Strstat[] = [
   {value: '1-0', viewValue: '1'},
   {value: '2-1', viewValue: '2'},
   {value: '3-2', viewValue: '3'},
@@ -92,7 +88,7 @@ str: Str[] = [
   {value: '5-4', viewValue: '5'}
 ];
 
-ints: Ints[] = [
+ints: Intstat[] = [
   {values: '1-0', viewValue: '1'},
   {values: '2-1', viewValue: '2'},
   {values: '3-2', viewValue: '3'},
@@ -100,7 +96,7 @@ ints: Ints[] = [
   {values: '5-4', viewValue: '5'}
 ];
 
-chas: Chas[] = [
+chas: Chastat[] = [
   {values: '1-0', viewValue: '1'},
   {values: '2-1', viewValue: '2'},
   {values: '3-2', viewValue: '3'},

@@ -12,7 +12,7 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 })
 export class Login {
     constructor(private router: Router) {}
-    gotoCharsel() {
+    gotoCharacter() {
         this.router.navigate(['charsel']);
     }
 }

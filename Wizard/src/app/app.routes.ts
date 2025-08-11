@@ -1,11 +1,10 @@
 import { Routes } from '@angular/router';
 import { TitlePage } from "./title-page/title-page"; 
-import { PlayerAuth } from './player/charsel/player-auth/player-auth';
-import { Charsel } from './player/charsel/charsel';
+import { PlayerAuth } from './player/character/player-auth/player-auth';
 import { Village } from './story/village/village';
 import { Forest } from './story/forest/forest';
 import { Dungeon } from './story/dungeon/dungeon';
-import { CreateAccount } from './player/charsel/player-auth/create-account/create-account';
+import { CreateAccount } from './player/character/player-auth/create-account/create-account';
 import { Dungeon2 } from './story/dungeon/dungeon-2';
 import { Village2 } from './story/village/village-2';
 import { Fight } from './story/forest/fight';
@@ -38,6 +37,7 @@ import { Union } from './story/forest/union';
 import { UnionTwo } from './story/forest/union-2';
 import { Maim } from './story/forest/maim';
 import { Login } from './player/login';
+import { Character } from './player/character/character';
 
 
 export const routes: Routes = [
@@ -49,7 +49,7 @@ export const routes: Routes = [
 
             {path: 'create-account', component: CreateAccount},
 
-            {path: 'charsel', component: Charsel},
+            {path: 'character', component: Character},
 
             {path: 'village', component: Village},
 
