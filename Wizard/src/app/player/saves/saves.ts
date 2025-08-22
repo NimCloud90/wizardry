@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../services/api-service/api-service';
 import { SavesService } from '../../services/saves-service';
+import { HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-saves',
