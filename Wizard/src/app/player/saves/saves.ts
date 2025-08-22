@@ -1,5 +1,5 @@
 // some.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApiService } from '../../services/api-service/api-service';
 import { SavesService } from '../../services/saves-service';
 
@@ -8,22 +8,25 @@ import { SavesService } from '../../services/saves-service';
   templateUrl: './saves.html',
 })
 
-export class SomeComponent implements OnInit {
+export class Saves {
+[x: string]: any;
   data: any;
 
-  constructor(private apiService: ApiService, private savesService: SavesService) {}
-
-  ngOnInit(): void {
-    this.apiService.getData().subscribe({
-      next: (response) => {
-        this.data = response;
-        console.log('Data:', this.data);
-      },
-      error: (err) => {
-        console.error('Error fetching data:', err);
-      }
-    });
+  constructor(private apiService: ApiService) {
+    this.data = this.apiService.loadSave()
   }
+
+  // ngOnInit(): void {
+  //   this.apiService.getData().subscribe({
+  //     next: (response) => {
+  //       this.data = response;
+  //       console.log('Data:', this.data);
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching data:', err);
+  //     }
+  //   });
+  // }
 
   // saveMultipleGames() {
   //   const saveDataList = [
