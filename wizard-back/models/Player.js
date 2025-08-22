@@ -1,9 +1,17 @@
-import { Schema, model } from 'mongoose';
+const mongoose = require('mongoose');
 
-const userSchema = new Schema({
-  username: String,
+const PlayerSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+    trim: true
+  },
+  passwordHash: {
+    type: String,
+    required: true,
+  },
+}, { timestamps: true });
 
-  password: String, // Optional for visual novels
-});
-
-export default model('Player', userSchema);
+module.exports = mongoose.model('Player', PlayerSchema);
