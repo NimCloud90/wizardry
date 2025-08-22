@@ -10,7 +10,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "models/routes/controllers/saveController.js"  ],
   "exclude": [
     "src/**/*.spec.ts"
   ]
