@@ -7,7 +7,8 @@ import { firstValueFrom, Observable } from 'rxjs';
 })
 export class ApiService {
   private baseUrl = 'http://localhost:5000/api/saves'; // your backend URL
-
+  private baseUrl2 = 'http://localhost:5000/api/character';
+  
   constructor(private http: HttpClient) {}
 
   // getData(): Observable<any> {

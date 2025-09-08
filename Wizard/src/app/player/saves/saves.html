@@ -1,5 +1,27 @@
-<!-- @for (save of saves; track $playerId) {} -->
-<!-- @for(d of data; track d){
-    <p>d</p>
-} -->
-    <h2>work</h2>
+<div class="save-container">
+    <h2>Game Saves</h2>
+  
+    <form (submit)="saveGame(); $event.preventDefault()">
+      <input
+        type="text"
+        [(ngModel)]="saveName"
+        name="saveName"
+        placeholder="Enter save name"
+        required
+      />
+      <button type="submit">Save Game</button>
+    </form>
+  
+    <div *ngIf="isLoading">Loading saves...</div>
+  
+    <ul *ngIf="saves.length > 0">
+      <li *ngFor="let save of saves">
+        {{ save }}
+        <button (click)="loadGame(save)">Load</button>
+      <button (click)="deleteSave(save)">Delete</button>
+      </li>
+    </ul>
+  
+    <p *ngIf="!isLoading && saves.length === 0">No saves found.</p>
+  </div>
+  

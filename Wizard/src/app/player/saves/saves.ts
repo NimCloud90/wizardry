@@ -3,59 +3,74 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../services/api-service/api-service';
 import { SavesService } from '../../services/saves-service';
 import { HttpClient} from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-saves',
   templateUrl: './saves.html',
+  imports: [CommonModule, FormsModule],
 })
 
 export class Saves {
-[x: string]: any;
-  data: any;
+  saves: string[] = [];
+  saveName: string = '';
+  isLoading = false;
 
-  constructor(private apiService: ApiService) {
-    this.data = this.apiService.loadSave()
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.loadProgress();
   }
 
-  // ngOnInit(): void {
-  //   this.apiService.getData().subscribe({
-  //     next: (response) => {
-  //       this.data = response;
-  //       console.log('Data:', this.data);
-  //     },
-  //     error: (err) => {
-  //       console.error('Error fetching data:', err);
-  //     }
-  //   });
-  // }
+  loadProgress() {
+    this.isLoading = true;
+    this.http.get<string[]>('/api/save').subscribe({
+      next: (data) => {
+        this.saves = data;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Failed to load saves', err);
+        this.isLoading = false;
+      }
+    });
+  }
 
-  // saveMultipleGames() {
-  //   const saveDataList = [
-  //     { id: '1234', progress: { level: 5, character: 'Wizard' } },
-  //     { id: '5678', progress: { level: 3, character: 'Warrior' } },
-  //     { id: '9012', progress: { level: 7, character: 'Rogue' } }
-  //   ];
+  saveGame() {
+    if (!this.saveName.trim()) return;
 
-  //   for (const saveData of saveDataList) {
-  //     this.savesService.saveProgress(saveData.id, saveData.progress).subscribe({
-  //       next: (response) => console.log(`Saved ${saveData.id}:`, response),
-  //       error: (err) => console.error(`Failed to save ${saveData.id}:`, err)
-  //     });
-  //   }
-  // }
+    this.http.post('/api/save', { name: this.saveName }).subscribe({
+      next: () => {
+        this.loadProgress();
+        this.saveName = '';
+      },
+      error: (err) => console.error('Save failed', err)
+    });
+  }
 
-  // // Load multiple game progress entries
-  // loadMultipleGames() {
-  //   const saveIds = ['1234', '5678', '9012'];
+  loadGame(name: string) {
+    this.http.get(`/api/save/${name}`).subscribe({
+      next: (data) => {
+        console.log('Loaded save:', data);
+        // Apply game state logic here
+      },
+      error: (err) => console.error('Load failed', err)
+    });
+  }
 
-  //   for (const id of saveIds) {
-  //     this.savesService.loadProgress(id).subscribe({
-  //       next: (response) => console.log(`Loaded ${id}:`, response),
-  //       error: (err) => console.error(`Failed to load ${id}:`, err)
-  //     });
-  //   }
-  // }
+  deleteSave(name: string) {
+    if (!confirm(`Are you sure you want to delete "${name}"?`)) return;
 
-  
+    this.http.delete(`/api/save/${name}`).subscribe({
+      next: () => {
+        this.saves = this.saves.filter(s => s !== name); // Optimistic update
+      },
+      error: (err) => console.error('Delete failed', err)
+    });
+  }
 }
+
+
 

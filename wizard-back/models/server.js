@@ -15,17 +15,18 @@ mongoose.connect(process.env.MONGO_URI, {
 .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
-const authRoutes = require('./routes/auth');
+const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-
 const app = express();
 const port = 5000; // You can change this to any port that works for you
 
+app.use(express.json());
 
+app.use('/api', authRoutes); // Adjust base path if needed
 
 // Middleware
 app.use(express.json()); // Allows us to parse JSON
@@ -36,6 +37,9 @@ app.use(cors({
 }));
 
 // Routes
+
+app.use('/api/auth', authRoutes);
+
 app.post('/api/saves/save', (req, res) => {
   const { playerId, progress } = req.body;
   // Simulate saving data (in reality, you'd save this to a DB)
