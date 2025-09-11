@@ -1,17 +1,18 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const PlayerSchema = new mongoose.Schema({
-  username: {
+  playername: {
     type: String,
     required: true,
     unique: true,
     lowercase: true,
     trim: true
   },
-  passwordHash: {
+  password: {  // Changed from passwordHash to match controller
     type: String,
     required: true,
   },
 }, { timestamps: true });
 
-module.exports = mongoose.model('Player', PlayerSchema);
+const Player = mongoose.model('Player', PlayerSchema);
+export default Player;

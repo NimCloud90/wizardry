@@ -1,3 +1,5 @@
+import authRoutes from './controllers/authController.js';
+
 // POST /login
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
