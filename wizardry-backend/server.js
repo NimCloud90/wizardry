@@ -18,6 +18,7 @@ app.use(express.json());
 app.use(cors({
   origin: 'http://localhost:4200',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: false,
 }));
 
@@ -31,6 +32,7 @@ app.post('/api/saves/save', (req, res) => {
   console.log(`Saving progress for user: ${playerId}`);
   res.status(200).send(`Progress saved for ${playerId}`);
 });
+
 
 app.get('/api/saves/load/:playerId', (req, res) => {
   const { playerId } = req.params;

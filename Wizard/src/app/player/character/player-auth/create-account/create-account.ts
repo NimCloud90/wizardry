@@ -13,20 +13,20 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./create-account.css'], // Fixed typo: styleUrl -> styleUrls
 })
 export class CreateAccount {
-  username = '';
+  playername = '';
   password = '';
   error = '';
 
   constructor(private auth: AuthService, private router: Router) {}
 
   onSubmit(): void {
-    if (!this.username || !this.password) {
+    if (!this.playername || !this.password) {
       this.error = 'Username and password are required';
       return;
     }
 
-    console.log('Submitting:', this.username, this.password);
-    this.auth.register(this.username, this.password).subscribe({
+    console.log('Submitting:', this.playername, this.password);
+    this.auth.register(this.playername, this.password).subscribe({
       next: () => {
         this.router.navigate(['/login']); // Navigate to login page after successful registration
       },

@@ -4,7 +4,7 @@
     <form (ngSubmit)="onSubmit()">
       <mat-form-field>
         <mat-label>Username</mat-label>
-        <input matInput [(ngModel)]="username" name="username" required />
+        <input matInput [(ngModel)]="playername" name="username" required />
       </mat-form-field>
   
       <mat-form-field>
@@ -16,5 +16,5 @@
     </form>
   
     <p *ngIf="error" class="error">{{ error }}</p>
-    <p *ngIf="!username || !password" class="error">Username and password cannot be empty</p>
+    <p *ngIf="!playername || !password" class="error">Username and password cannot be empty</p>
   </div>

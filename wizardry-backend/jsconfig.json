@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "checkJs": false,   // don't type-check JS files
+      "module": "esnext", // since you're using "type": "module"
+      "target": "es2020"
+    },
+    "exclude": [
+      "node_modules",
+      "**/node_modules/*"
+    ]
+  }
+  
