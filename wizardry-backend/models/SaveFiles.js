@@ -6,11 +6,14 @@ const savefilesSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  progress: {
-    type: Object,
-    required: true,
-    default: {}
-  },
+  saves: [
+    {
+      name: { type: String, required: true },
+      data: { type: Object, required: true},
+      createdAt: { type: Date, default: Date.now }
+    }
+  ]
+
 }, { timestamps: true });
 
 // Optional: index playerId for faster queries

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { AuthService } from '../../../../services/auth-service';
+import { AuthService } from '../../../services/auth-service';
 import { CommonModule } from '@angular/common';
 
 @Component({

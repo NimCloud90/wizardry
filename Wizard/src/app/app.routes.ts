@@ -1,10 +1,9 @@
 import { Routes } from '@angular/router';
 import { TitlePage } from "./title-page/title-page"; 
-import { PlayerAuth } from './player/character/player-auth/player-auth';
 import { Village } from './story/village/village';
 import { Forest } from './story/forest/forest';
 import { Dungeon } from './story/dungeon/dungeon';
-import { CreateAccount } from './player/character/player-auth/create-account/create-account';
+import { CreateAccount } from './player/character/create-account/create-account';
 import { Dungeon2 } from './story/dungeon/dungeon-2';
 import { Village2 } from './story/village/village-2';
 import { Fight } from './story/forest/fight';
@@ -45,8 +44,6 @@ export const routes: Routes = [
 
     
             {path: '', component: TitlePage,},
-
-            {path: 'player-auth', component: PlayerAuth},
 
             {path: 'create-account', component: CreateAccount},
 

@@ -1,6 +1,7 @@
 <div class="create-account-container">
-    <h2>Create Account</h2>
-  
+    <h2>But First: Create an Account</h2>
+    <p *ngIf="error" class="error">{{ error }}</p>
+    <p *ngIf="!playername || !password" class="error">Username and password cannot be empty</p>
     <form (ngSubmit)="onSubmit()">
       <mat-form-field>
         <mat-label>Username</mat-label>
@@ -15,6 +16,5 @@
       <button type="submit" style="display: block; margin: 0 auto;">Create Account</button>
     </form>
   
-    <p *ngIf="error" class="error">{{ error }}</p>
-    <p *ngIf="!playername || !password" class="error">Username and password cannot be empty</p>
+
   </div>

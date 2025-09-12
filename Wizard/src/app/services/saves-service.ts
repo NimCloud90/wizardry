@@ -10,14 +10,18 @@ export class SavesService {
 
   constructor(private http: HttpClient) {}
 
-  saveProgress(playerId: string, progress: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/save`, {
-      playerId: playerId,
-      progress: JSON.stringify(progress)
-    });
+  // Save or overwrite a save slot
+  saveProgress(playerId: string, payload: { name: string; data: any }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/save`, { playerId, ...payload });
   }
 
+  // Load all saves for a player
   loadProgress(playerId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/load/${playerId}`);
+  }
+
+  // Delete a save by name
+  deleteSave(playerId: string, name: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${playerId}/${name}`);
   }
 }

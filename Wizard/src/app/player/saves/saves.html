@@ -1,7 +1,7 @@
 <div class="save-container">
     <h2>Game Saves</h2>
   
-    <form (submit)="saveGame(); $event.preventDefault()">
+    <form (submit)="saveGame(); $event.preventDefault()" class="save-form">
       <input
         type="text"
         [(ngModel)]="saveName"
@@ -17,11 +17,13 @@
     <ul *ngIf="saves.length > 0">
       <li *ngFor="let save of saves">
         {{ save }}
-        <button (click)="loadGame(save)">Load</button>
-      <button (click)="deleteSave(save)">Delete</button>
+        <button (click)="loadGame(save)">📂 Load</button>
+      <button (click)="deleteSave(save)">🗑 Delete</button>
       </li>
     </ul>
-  
-    <p *ngIf="!isLoading && saves.length === 0">No saves found.</p>
+  <!-- Empty state -->
+  <ng-template #noSaves>
+    <p *ngIf="!isLoading">No saves found.</p>
+  </ng-template>
   </div>
   
