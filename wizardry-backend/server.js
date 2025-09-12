@@ -34,6 +34,18 @@ app.post('/api/saves/save', (req, res) => {
 });
 
 
+app.post("/api/auth/register", (req, res) => {
+  const { playername, password } = req.body;
+  // save user logic
+  res.json({ message: "User registered" });
+});
+
+app.post("/api/auth/login", (req, res) => {
+  const { playername, password } = req.body;
+  // auth logic
+  res.json({ token });
+});
+
 app.get('/api/saves/load/:playerId', (req, res) => {
   const { playerId } = req.params;
   console.log(`Loading progress for player: ${playerId}`);

@@ -1,10 +1,19 @@
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 
-const saveFileSchema = new Schema({
-  playerId: { type: Schema.Types.Mixed, required: true,
-  progress: String, // Could be JSON or some kind of pointer
-  lastSaved: { type: Date, default: Date.now },
-}});
+const savefilesSchema = new mongoose.Schema({
+  playerId: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  progress: {
+    type: Object,
+    required: true,
+    default: {}
+  },
+}, { timestamps: true });
 
+// Optional: index playerId for faster queries
+saveSchema.index({ playerId: 1 }, { unique: true });
 
-export default model('SaveFile', saveFileSchema);
+export default mongoose.model('SaveFiles', savefilesSchema);
