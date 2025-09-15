@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { GameStateService } from '../../services/game-state.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -21,4 +21,6 @@ export class ThroneRoom {
     this.router.navigate([`/${choice}`]);
     
 }
+@Input() fixed = false;
+  year = new Date().getFullYear();
 }

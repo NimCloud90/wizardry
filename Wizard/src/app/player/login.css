@@ -27,3 +27,10 @@ button {
 button:hover {
     transform: scale(1.1);
 }
+
+.copyright {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 20px;
+  }

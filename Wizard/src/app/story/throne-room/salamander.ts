@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { Router } from "@angular/router";
 import { GameStateService } from '../../services/game-state.service';
 import { CommonModule } from '@angular/common';
@@ -22,4 +22,6 @@ export class Salamander {
     this.router.navigate([`/${choice}`]);
     
 }
+@Input() fixed = false;
+  year = new Date().getFullYear();
 }

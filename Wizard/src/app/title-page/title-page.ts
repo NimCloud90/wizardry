@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,4 +12,6 @@ export class TitlePage {
 gotoCreateAccount() {
 this.router.navigate(['create-account']);
 }
+@Input() fixed = false;
+  year = new Date().getFullYear();
 }

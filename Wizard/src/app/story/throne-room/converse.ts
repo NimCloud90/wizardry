@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { Router } from "@angular/router";
 
 @Component({
@@ -16,4 +16,7 @@ export class Converse {
   gotoTitlePage() {
     this.router.navigate(["/"]);
   }
+
+  @Input() fixed = false;
+  year = new Date().getFullYear();
 }

@@ -1,4 +1,4 @@
-import { Component} from "@angular/core";
+import { Component, Input} from "@angular/core";
 import { Router } from "@angular/router";
 
 @Component({
@@ -21,4 +21,6 @@ export class GetEm {
     gotoUnionTwo() {
         this.router.navigate(['union-2']);
 }
+@Input() fixed = false;
+  year = new Date().getFullYear();
 }

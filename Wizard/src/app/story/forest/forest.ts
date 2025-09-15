@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
@@ -31,5 +31,6 @@ export class Forest {
   get currentLocation() {
     return this.gameState.currentLocation();
   }
-
+  @Input() fixed = false;
+  year = new Date().getFullYear();
 }
