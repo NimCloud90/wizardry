@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create-account',
+  standalone: true,
   imports: [MatFormFieldModule, MatInputModule, FormsModule, CommonModule],
   templateUrl: './create-account.html',
   styleUrls: ['./create-account.css'], // Fixed typo: styleUrl -> styleUrls
@@ -36,4 +37,8 @@ export class CreateAccount {
       },
     });
   }
-}
+
+  gotoVillage() {
+    this.router.navigate(['village']);
+    }
+    }

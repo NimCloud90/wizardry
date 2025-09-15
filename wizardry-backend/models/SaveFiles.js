@@ -17,6 +17,6 @@ const savefilesSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // Optional: index playerId for faster queries
-saveSchema.index({ playerId: 1 }, { unique: true });
+savefilesSchema.index({ playerId: 1 }, { unique: true });
 
 export default mongoose.model('SaveFiles', savefilesSchema);

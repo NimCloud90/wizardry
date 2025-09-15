@@ -10,19 +10,19 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  register(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, { username, password });
+  register(playername: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, { playername, password });
   }
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, { username, password }).pipe(
-      tap((res: any) => {
-        if (res.token) {
-          localStorage.setItem('token', res.token);
-        }
-      })
-    );
-  }
+  // login(playername: string, password: string): Observable<any> {
+  //   return this.http.post(`${this.apiUrl}/login`, { playername, password }).pipe(
+  //     tap((res: any) => {
+  //       if (res.token) {
+  //         localStorage.setItem('token', res.token);
+  //       }
+  //     })
+  //   );
+  // }
 
   logout(): void {
     localStorage.removeItem('token');

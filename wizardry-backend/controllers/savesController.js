@@ -1,5 +1,5 @@
 // controllers/savesController.js
-import Save from '../models/Save.js';
+import SaveFiles from '../models/SaveFiles.js';
 
 // Save or overwrite progress
 export const saveProgress = async (req, res) => {

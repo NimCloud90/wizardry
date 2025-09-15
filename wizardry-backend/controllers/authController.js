@@ -24,19 +24,35 @@ export async function signup(req, res) {
 
 // Login Controller
 export async function login(req, res) {
-    const { playername, password } = req.body;
+  const { playername, password } = req.body;
 
-    try {
+  try {
+    // 1. Find player first
     const player = await Player.findOne({ playername });
-    const token = jwt.sign({ id: player._id}, process.env.JWT_SECRET || 'secret',  { expiresIn: '1h' });
-    const isMatch = await bcrypt.compare(password, player.password);
-    if (!player || !isMatch) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+    if (!player) {
+      return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // In real apps: generate token here
-    res.status(200).json({ player: {id: player._id, playername}, token, message: 'Login successful!' });
+    // 2. Compare password
+    const isMatch = await bcrypt.compare(password, player.password);
+    if (!isMatch) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
+
+    // 3. Generate token AFTER checks
+    const token = jwt.sign(
+      { id: player._id },
+      process.env.JWT_SECRET || "secret",
+      { expiresIn: "1h" }
+    );
+
+    res.status(200).json({
+      player: { id: player._id, playername: player.playername },
+      token,
+      message: "Login successful!",
+    });
   } catch (err) {
-    res.status(500).json({ error: 'Login failed', details: err.message });
+    console.error("Login error:", err);
+    res.status(500).json({ error: "Server error", details: err.message });
   }
-};
+}
