@@ -1,29 +1,40 @@
-<div class="save-container">
-    <h2>Game Saves</h2>
-  
-    <form (submit)="saveGame(); $event.preventDefault()" class="save-form">
+<div class="saves-container">
+  <h2>Player {{ playerId }} Saves</h2>
+
+  <!-- Reload button -->
+  <button (click)="loadSaves()">Reload Saves</button>
+
+  <!-- Loading & Error states -->
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <!-- Saves list -->
+  <ul *ngIf="!loading && !error && saves.length > 0">
+    <li *ngFor="let save of saves">
+      {{ save.name }} ({{ save.createdAt | date:'shortDate' }})
+      <button (click)="deleteSave(save.name)">Delete</button>
+    </li>
+  </ul>
+
+  <!-- No saves fallback -->
+  <div *ngIf="!loading && !error && saves.length === 0">
+    No saves found.
+  </div>
+
+  <hr />
+
+  <!-- Save new progress form -->
+  <h3>Create New Save</h3>
+  <form (ngSubmit)="createSave()" #saveForm="ngForm">
+    <label>
+      Save Name:
       <input
         type="text"
-        [(ngModel)]="saveName"
+        [(ngModel)]="newSaveName"
         name="saveName"
-        placeholder="Enter save name"
         required
       />
-      <button type="submit">Save Game</button>
-    </form>
-  
-    <div *ngIf="isLoading">Loading saves...</div>
-  
-    <ul *ngIf="saves.length > 0">
-      <li *ngFor="let save of saves">
-        {{ save }}
-        <button (click)="loadGame(save)">📂 Load</button>
-      <button (click)="deleteSave(save)">🗑 Delete</button>
-      </li>
-    </ul>
-  <!-- Empty state -->
-  <ng-template #noSaves>
-    <p *ngIf="!isLoading">No saves found.</p>
-  </ng-template>
-  </div>
-  
+    </label>
+    <button type="submit" [disabled]="!saveForm.form.valid">Save Progress</button>
+  </form>
+</div>

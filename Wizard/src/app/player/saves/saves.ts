@@ -1,71 +1,80 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { SaveFile, SavesService } from '../../services/saves-service';
+import { Save } from './saves-file.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SavesService } from '../../services/saves-service';
 
 @Component({
   selector: 'app-saves',
   templateUrl: './saves.html',
-  standalone: true, // use standalone component
   imports: [CommonModule, FormsModule],
+  styleUrls: ['./saves.css']
 })
 export class Saves implements OnInit {
-  playerId: any = {} // TODO: replace with actual player ID (e.g. from auth)
-  saves: any[] = [];
-  progress: any = {};
-  saveName: string = '';
-  isLoading = false;
+  playerId = '1'; // Hard-coded for now
+  saves: SaveFile[] = [];
+  loading = false;
+  error: string | null = null;
+  newSaveName = '';
 
-  constructor(private http: HttpClient, private savesService: SavesService) {}
+  constructor(private savesService: SavesService) {}
 
-  ngOnInit() {
-    this.fetchSaves();
+  ngOnInit(): void {
+    this.loadSaves();
   }
 
-  saveGame() {
-    const progress = { level: 1, score: 200 }; // replace with real game state
-    this.savesService.saveProgress(this.playerId, { name: this.saveName, data: progress })
-      .subscribe({
-        next: () => {
-          this.fetchSaves();
-          this.saveName = '';
-        },
-        error: (err) => console.error('Save failed', err),
-      });
-  }
+  // Load all saves
+  loadSaves(): void {
+    this.loading = true;
+    this.error = null;
 
-  loadGame(name: string) {
     this.savesService.loadProgress(this.playerId).subscribe({
       next: (res) => {
-        console.log(`Loaded progress for ${name}:`, res);
-        // TODO: filter res.progress by save name if multiple saves are supported
-      },
-      error: (err) => console.error('Load failed', err),
-    });
-  }
-
-  deleteSave(name: string) {
-    if (!confirm(`Are you sure you want to delete "${name}"?`)) return;
-
-    this.http.delete(`/api/saves/${name}`).subscribe({
-      next: () => {
-        this.saves = this.saves.filter(s => s.name !== name);
-      },
-      error: (err) => console.error('Delete failed', err),
-    });
-  }
-
-  fetchSaves() {
-    this.isLoading = true;
-    this.savesService.loadProgress(this.playerId).subscribe({
-      next: (res) => {
-        this.saves = res.progress?.saves || [];
-        this.isLoading = false;
+        this.saves = res.saves || [];
+        this.loading = false;
       },
       error: (err) => {
-        console.error('Fetch failed', err);
-        this.isLoading = false;
+        console.error('❌ Error loading saves:', err);
+        this.error = 'Failed to load saves.';
+        this.loading = false;
+      },
+    });
+  }
+
+  // Create or overwrite save
+  createSave(): void {
+    if (!this.newSaveName.trim()) return;
+
+    const payload = {
+      name: this.newSaveName,
+      data: { hp: 100, level: 1 } // replace with real game state
+    };
+
+    this.savesService.saveProgress(this.playerId, payload).subscribe({
+      next: (res) => {
+        console.log('✅ Save created:', res);
+        this.newSaveName = '';
+        this.loadSaves();
+      },
+      error: (err) => {
+        console.error('❌ Error creating save:', err);
+        this.error = 'Failed to create save.';
+      },
+    });
+  }
+
+  // Delete a save
+  deleteSave(name: string): void {
+    if (!confirm(`Are you sure you want to delete "${name}"?`)) return;
+
+    this.savesService.deleteSave(this.playerId, name).subscribe({
+      next: (res) => {
+        console.log('✅ Save deleted:', res);
+        this.saves = res.saves || [];
+      },
+      error: (err) => {
+        console.error('❌ Error deleting save:', err);
+        this.error = 'Failed to delete save.';
       },
     });
   }

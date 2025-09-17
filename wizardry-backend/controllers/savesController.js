@@ -1,4 +1,3 @@
-// controllers/savesController.js
 import SaveFiles from '../models/SaveFiles.js';
 
 // Save or overwrite progress
@@ -10,26 +9,22 @@ export const saveProgress = async (req, res) => {
   }
 
   try {
-    let saveDoc = await Save.findOne({ playerId });
+    let saveDoc = await SaveFiles.findOne({ playerId });
 
     if (!saveDoc) {
-      saveDoc = new Save({ playerId, saves: [] });
+      saveDoc = new SaveFiles({ playerId, saves: [] });
     }
 
-    // Check if save with same name exists
     const existingSaveIndex = saveDoc.saves.findIndex(s => s.name === name);
 
     if (existingSaveIndex > -1) {
-      // Overwrite existing save
       saveDoc.saves[existingSaveIndex].data = data;
       saveDoc.saves[existingSaveIndex].createdAt = new Date();
     } else {
-      // If already 3 saves, reject
       if (saveDoc.saves.length >= 3) {
         return res.status(400).json({ message: 'Save limit reached (3 max)' });
       }
-      // Add new save
-      saveDoc.saves.push({ name, data });
+      saveDoc.saves.push({ name, data, createdAt: new Date() });
     }
 
     await saveDoc.save();
@@ -40,31 +35,31 @@ export const saveProgress = async (req, res) => {
   }
 };
 
-// Load all saves for player
+// Load all saves for a player
 export const loadProgress = async (req, res) => {
   const { playerId } = req.params;
 
   try {
-    const saveDoc = await Save.findOne({ playerId });
-    if (!saveDoc) {
-      return res.status(404).json({ message: 'No saves found', saves: [] });
-    }
+    const saveDoc = await SaveFiles.findOne({ playerId });
 
-    res.status(200).json({ saves: saveDoc.saves });
+    // Return empty array instead of 404 if no saves exist
+    const saves = saveDoc?.saves || [];
+    res.status(200).json({ saves });
   } catch (err) {
     console.error('Load error:', err);
     res.status(500).json({ message: 'Server error' });
   }
 };
 
-// Delete a specific save by name
+// Delete a specific save
 export const deleteSave = async (req, res) => {
   const { playerId, name } = req.params;
 
   try {
-    const saveDoc = await Save.findOne({ playerId });
+    const saveDoc = await SaveFiles.findOne({ playerId });
+
     if (!saveDoc) {
-      return res.status(404).json({ message: 'No saves found' });
+      return res.status(200).json({ message: 'No saves found', saves: [] });
     }
 
     saveDoc.saves = saveDoc.saves.filter(s => s.name !== name);

@@ -26,39 +26,10 @@ app.use(cors({
 app.use('/api/auth', authRoutes);
 app.use('/api/saves', savesRoutes);
 
-// --- Extra Test Endpoints (can be removed later) ---
-app.post('/api/saves/save', (req, res) => {
-  const { playerId, progress } = req.body;
-  console.log(`Saving progress for user: ${playerId}`);
-  res.status(200).send(`Progress saved for ${playerId}`);
-});
-
-
-app.post("/api/auth/register", (req, res) => {
-  const { playername, password } = req.body;
-  // save user logic
-  res.json({ message: "User registered" });
-});
-
-app.post("/api/auth/login", (req, res) => {
-  const { playername, password } = req.body;
-  // auth logic
-  res.json({ token });
-});
-
-app.get('/api/saves/load/:playerId', (req, res) => {
-  const { playerId } = req.params;
-  console.log(`Loading progress for player: ${playerId}`);
-  res.status(200).send(`Progress loaded for ${playerId}`);
-});
-
 // --- Database Connection ---
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('✅ MongoDB connected'))
-.catch(err => console.error('❌ MongoDB connection error:', err));
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('✅ MongoDB connected'))
+  .catch(err => console.error('❌ MongoDB connection error:', err));
 
 // --- Start Server ---
 app.listen(PORT, () => {
