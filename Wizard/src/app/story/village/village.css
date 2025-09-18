@@ -2,6 +2,8 @@ body {
     font-family: 'Comic Sans MS', cursive, sans-serif;
     background-color: #e8f7fe;
     color: #2b5a5a;
+    background-attachment: fixed;
+    min-height: 100%;
   }
   
   h2 {
