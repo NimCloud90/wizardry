@@ -2,6 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 
+export interface AuthResponse {
+  player: { id: string; playername: string };
+  token: string;
+  message: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -10,19 +16,17 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  register(playername: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, { playername, password });
+  register(playername: string, password: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/register`, { playername, password });
   }
 
-  // login(playername: string, password: string): Observable<any> {
-  //   return this.http.post(`${this.apiUrl}/login`, { playername, password }).pipe(
-  //     tap((res: any) => {
-  //       if (res.token) {
-  //         localStorage.setItem('token', res.token);
-  //       }
-  //     })
-  //   );
-  // }
+  login(playername: string, password: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/login`, { playername, password }).pipe(
+      tap(res => {
+        if (res.token) localStorage.setItem('token', res.token);
+      })
+    );
+  }
 
   logout(): void {
     localStorage.removeItem('token');

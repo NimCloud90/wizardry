@@ -1,44 +1,53 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { AuthService } from '../../../services/auth-service';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { AuthService, AuthResponse } from '../../../services/auth-service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create-account',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, FormsModule, CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './create-account.html',
   styleUrls: ['./create-account.css'], // Fixed typo: styleUrl -> styleUrls
 })
 export class CreateAccount {
-  playername = '';
-  password = '';
-  error = '';
+  createForm: FormGroup;
+  error: string = '';
+  loading: boolean = false;
 
-  constructor(private auth: AuthService, private router: Router) {}
-
-  onSubmit(): void {
-    if (!this.playername || !this.password) {
-      this.error = 'Username and password are required';
-      return;
-    }
-
-    console.log('Submitting:', this.playername, this.password);
-    this.auth.register(this.playername, this.password).subscribe({
-      next: () => {
-        this.router.navigate(['/login']); // Navigate to login page after successful registration
-      },
-      error: (err) => {
-        console.error('Registration error:', err); // Log the error for debugging
-        this.error = err.error?.message || 'Account creation failed';
-      },
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
+    this.createForm = this.fb.group({
+      playername: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
     });
   }
 
-  gotoVillage() {
-    this.router.navigate(['village']);
+  submit(): void {
+    if (this.createForm.invalid) return;
+
+    const { playername, password, confirmPassword } = this.createForm.value;
+
+    if (password !== confirmPassword) {
+      this.error = 'Passwords do not match';
+      return;
     }
-    }
+
+    this.loading = true;
+    this.error = '';
+
+    this.auth.register(playername, password).subscribe({
+      next: (res: AuthResponse) => {
+        console.log('✅ Registration successful:', res);
+        this.router.navigate(['/village']);
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('❌ Registration error:', err);
+        this.error = err.error?.error || 'Registration failed. Please try again.';
+        this.loading = false;
+      },
+    });
+  }
+}

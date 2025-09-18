@@ -1,9 +1,7 @@
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
-import {FormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { AuthService } from "../services/auth-service";
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { AuthService, AuthResponse } from "../services/auth-service";
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,28 +9,39 @@ import { CommonModule } from '@angular/common';
     standalone: true,
     templateUrl: './login.html',
     styleUrls: ['./login.css'],
-    imports: [MatFormFieldModule, MatInputModule, FormsModule, CommonModule]
+    imports: [CommonModule, ReactiveFormsModule]
 })
 export class LoginComponent {
-    playername = '';
-    password = '';
-    error = '';
-
-    constructor(private auth: AuthService, private router: Router) {}
-
-    onSubmit() {
-    //     this.auth.login(this.playername, this.password).subscribe({
-    //       next: (res) => {
-    //         console.log('Login success:', res);
-    //         // maybe navigate after login:
-    //         // this.router.navigate(['/dashboard']);
-    //       },
-    //       error: (err) => {
-    //         console.error('Login error:', err);
-    //         this.error = 'Invalid credentials. Please try again.';
-    //       }
-    //     });
-    //   }
-    this.router.navigate(['village']);
+    loginForm: FormGroup;
+    error: string = '';
+    loading: boolean = false;
+  
+    constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
+      this.loginForm = this.fb.group({
+        playername: ['', Validators.required],
+        password: ['', Validators.required],
+      });
     }
-}
+  
+    submit(): void {
+      if (this.loginForm.invalid) return;
+  
+      this.loading = true;
+      this.error = '';
+  
+      const { playername, password } = this.loginForm.value;
+  
+      this.auth.login(playername, password).subscribe({
+        next: (res: AuthResponse) => {
+          console.log('✅ Login successful:', res);
+          this.router.navigate(['/village']);
+          this.loading = false;
+        },
+        error: (err) => {
+          console.error('❌ Login failed:', err);
+          this.error = err.error?.error || 'Login failed. Please try again.';
+          this.loading = false;
+        },
+      });
+    }
+  }

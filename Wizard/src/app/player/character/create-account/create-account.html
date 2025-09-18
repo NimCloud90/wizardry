@@ -1,22 +1,39 @@
-<div class="create-account-container">
-    <h2>But First: Create an Account</h2>
-    <p *ngIf="error" class="error">{{ error }}</p>
-    <p *ngIf="!playername || !password" class="error">Username and password cannot be empty</p>
-    <form (ngSubmit)="onSubmit()">
-      <mat-form-field>
-        <mat-label>Username</mat-label>
-        <input matInput [(ngModel)]="playername" name="username" required />
-      </mat-form-field>
-  
-      <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input matInput type="password" [(ngModel)]="password" name="password" required />
-      </mat-form-field>
-  
-      <button type="submit" style="display: block; margin: 0 auto;">Create Account</button>
-      <h3>Or</h3>
-      <button (click)="gotoVillage()" style="display: block; margin: 0 auto;">Continue With The Story</button>
-    </form>
-  
+<div class="create-container">
+  <h2>Create Account</h2>
 
-  </div>
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+
+  <form [formGroup]="createForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="playername">Playername</label>
+      <input id="playername" formControlName="playername" placeholder="Enter your playername" />
+      <div *ngIf="createForm.get('playername')?.touched && createForm.get('playername')?.invalid" class="validation-error">
+        Playername is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password" placeholder="Enter your password" />
+      <div *ngIf="createForm.get('password')?.touched && createForm.get('password')?.invalid" class="validation-error">
+        Password is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm your password" />
+      <div *ngIf="createForm.get('confirmPassword')?.touched && createForm.get('confirmPassword')?.invalid" class="validation-error">
+        Confirming password is required.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="createForm.invalid || loading">
+      {{ loading ? 'Creating...' : 'Create Account' }}
+    </button>
+  </form>
+
+  <p>
+    Already have an account? <a routerLink="/login">Login here</a>.
+  </p>
+</div>
