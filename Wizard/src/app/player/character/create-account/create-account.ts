@@ -50,4 +50,7 @@ export class CreateAccount {
       },
     });
   }
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
 }
