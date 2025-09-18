@@ -21,4 +21,8 @@ export class Forest2 {
     }
     @Input() fixed = false;
   year = new Date().getFullYear();
+
+  goToSaves() {
+    this.router.navigate(['/saves']);
+  }
 }
