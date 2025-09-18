@@ -14,4 +14,8 @@ export class Combat {
     }
     @Input() fixed = false;
   year = new Date().getFullYear();
+
+  goToSaves() {
+    this.router.navigate(['/saves']);
+  }
 }
