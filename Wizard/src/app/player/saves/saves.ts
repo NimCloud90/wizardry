@@ -3,6 +3,7 @@ import { SaveFile, SavesService } from '../../services/saves-service';
 import { Save } from './saves-file.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-saves',
@@ -17,7 +18,7 @@ export class Saves implements OnInit {
   error: string | null = null;
   newSaveName = '';
 
-  constructor(private savesService: SavesService) {}
+  constructor(private savesService: SavesService, private location: Location) {}
 
   ngOnInit(): void {
     this.loadSaves();
@@ -77,5 +78,8 @@ export class Saves implements OnInit {
         this.error = 'Failed to delete save.';
       },
     });
+  }
+  goBack() {
+    this.location.back();
   }
 }
