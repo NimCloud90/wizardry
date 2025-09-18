@@ -57,3 +57,21 @@ body {
     color: #888;
     margin-top: 20px;
   }
+
+  .corner-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+  }
+  .corner-button button {
+    background-color: #00ccff;
+    border: 2px solid #2b5a5a;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .corner-button:hover{
+    transform: scale(1.1);
+  }
